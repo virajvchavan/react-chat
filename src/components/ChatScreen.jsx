@@ -4,17 +4,23 @@ class ChatScreen extends React.Component {
 
   state = {
     // load these messages from api call when the component is loaded
-    messages: [
-      { id: 1, content: "I want to break free!", from_id: 2, to_id: 3 },
-      { id: 2, content: "Bohemian Rhapsomy", from_id: 2, to_id: 3 },
-      { id: 3, content: "We will, we will rock you!", from_id: 3, to_id: 2 },
-    ]
+    messages: []
   }
 
   // do some kind of polling to make it seem real time
 
-  // this.props.currentUser gives us the logged in user
-  // this.state.selectedUser gives us the user to chat with
+  componentDidMount() {
+    fetch("http://chat-app-rails-api.herokuapp.com/api/users/" + this.props.currentUser.id + "/messages")
+      .then(res => res.json())
+      .then(
+        (result) =>
+        {
+          this.setState({
+            messages: result
+          })
+        }
+        )
+  }
  
   render() {
     // const selectedUser = this.props.selectedUser

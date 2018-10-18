@@ -6,8 +6,8 @@ class Dashboard extends React.Component {
 
   state = {
     isLoggedIn: true,
-    currentUser: { id: 2, username: 'harry' },
-    selectedUser: { id: 3, username: 'ron' }
+    currentUser: { id: 2, username: 'jon' },
+    selectedUser: { id: 3, username: 'harry' }
   }
 
   render() {

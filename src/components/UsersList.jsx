@@ -3,12 +3,24 @@ import React from 'react'
 class UsersList extends React.Component {
 
   state = {
-    users: [{id: 1, username: 'hermoinee'}, {id: 2, username: 'harry'}, {id: 3, username: 'ron'}]
+    users: []
   }
 
   // should handle click on any username, and render the ChatScreen accordingly
 
-  // for current_user, add the class .active to the li, probably in some lifecycle method
+  componentDidMount() {
+    fetch("http://chat-app-rails-api.herokuapp.com/api/users")
+      .then(res => res.json())
+      .then(
+        (result) =>
+        {
+          console.log(result)
+          this.setState({
+            users: result
+          })
+        }
+        )
+  }
 
   render() {
     const selectedUser = this.props.selectedUser
