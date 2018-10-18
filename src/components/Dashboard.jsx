@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import UsersList from './UsersList.jsx'
 import ChatScreen from './ChatScreen.jsx'
 

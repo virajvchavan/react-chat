@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 class ChatScreen extends React.Component {
 
@@ -17,7 +17,7 @@ class ChatScreen extends React.Component {
   // this.state.selectedUser gives us the user to chat with
  
   render() {
-    const selectedUser = this.props.selectedUser
+    // const selectedUser = this.props.selectedUser
     const current_user = this.props.currentUser
 
     return (
@@ -27,7 +27,7 @@ class ChatScreen extends React.Component {
           {this.state.messages.map((message, index) =>
             {
               let class_name = 'list-group-item'
-              if(message.from_id == current_user.id)
+              if(message.from_id === current_user.id)
               {
                 class_name += ' sent_message'
               }

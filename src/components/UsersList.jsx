@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 class UsersList extends React.Component {
 
@@ -20,12 +20,12 @@ class UsersList extends React.Component {
         <ul className='list-group'>
         {this.state.users.map((user, index) =>
           {
-            if(user.id == current_user.id)
+            if(user.id === current_user.id)
             {
-              return
+              return undefined
             }
             let class_name = 'list-group-item'
-            if(user.id == selectedUser.id)
+            if(user.id === selectedUser.id)
             {
               class_name += ' active'
             }
