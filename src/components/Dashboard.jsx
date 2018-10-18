@@ -14,6 +14,9 @@ class Dashboard extends React.Component {
     if(this.state.isLoggedIn){
       return ( 
         <div className='container'>
+          <div className='breadcrumb'>
+            <h6 className='float-right'> Welcome, {this.state.currentUser.username}! <span className='badge badge-info'>Logout</span></h6>
+          </div>
           <div className='row'>
             <div className='col-md-3'>
               <UsersList currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} />
