@@ -30,3 +30,36 @@
     transform: rotate(360deg);
   }
 }
+
+html, body, #root, .container{
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  background: #eaeaea;
+}
+
+.chat_messages{
+  background: #152f3a;
+  padding: 18px;
+  border-radius: 5px;
+}
+.chat_messages h4{
+  color: white;
+}
+.chat_messages ul li{
+  margin: 7px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.sent_message{
+  text-align: right;
+  margin-left: auto !important;
+}
+
+.received_message{
+  text-align: left;
+  margin-right: auto !important;
+}
