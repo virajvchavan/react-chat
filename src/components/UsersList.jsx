@@ -42,7 +42,7 @@ class UsersList extends React.Component {
               class_name += ' active'
             }
             return (
-             <li key={user.id} className={class_name}>{user.username}</li>
+             <li key={user.id} id={user.id} value={user.username} className={class_name} onClick={this.props.handleClick}>{user.username}</li>
             )
           }
         )}

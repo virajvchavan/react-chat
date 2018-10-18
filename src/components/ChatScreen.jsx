@@ -10,6 +10,17 @@ class ChatScreen extends React.Component {
   // do some kind of polling to make it seem real time
 
   componentDidMount() {
+    this.loadMessages();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.selectedUser.id !== this.props.selectedUser.id)
+    {
+      this.loadMessages();
+    }
+  }
+
+  loadMessages() {
     fetch("http://chat-app-rails-api.herokuapp.com/api/users/" + this.props.currentUser.id + "/messages?other_user_id=" + this.props.selectedUser.id)
       .then(res => res.json())
       .then(
@@ -19,16 +30,16 @@ class ChatScreen extends React.Component {
             messages: result
           })
         }
-        )
+      )
   }
  
   render() {
-    // const selectedUser = this.props.selectedUser
+    const selected_user = this.props.selectedUser
     const current_user = this.props.currentUser
 
     return (
       <div className='chat_messages'>
-        <h4>Chat with {this.props.selectedUser.username}</h4>
+        <h4>Chat with {selected_user.username}</h4>
         <ul className='list-group'>
           {this.state.messages.map((message, index) =>
             {

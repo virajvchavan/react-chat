@@ -7,7 +7,13 @@ class Dashboard extends React.Component {
   state = {
     isLoggedIn: true,
     currentUser: { id: 2, username: 'jon' },
-    selectedUser: { id: 3, username: 'harry' }
+    selectedUser: { id: null, username: null }
+  }
+
+  handleClick = (event) => {
+    this.setState({
+      selectedUser: {id: event.target.getAttribute('id'), username: event.target.getAttribute('value')}
+    });
   }
 
   render() {
@@ -19,7 +25,7 @@ class Dashboard extends React.Component {
           </div>
           <div className='row'>
             <div className='col-md-3'>
-              <UsersList currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} />
+              <UsersList currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} handleClick={this.handleClick} />
             </div>
             <div className='col-md-9'>
               <ChatScreen currentUser={this.state.currentUser} selectedUser={this.state.selectedUser} />
