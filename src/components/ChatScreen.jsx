@@ -37,30 +37,42 @@ class ChatScreen extends React.Component {
     const selected_user = this.props.selectedUser
     const current_user = this.props.currentUser
 
-    return (
-      <div className='chat_messages'>
-        <h4>Chat with {selected_user.username}</h4>
-        <ul className='list-group'>
-          {this.state.messages.map((message, index) =>
-            {
-              let class_name = 'list-group-item'
-              if(message.from_id === current_user.id)
+    if(selected_user.id)
+    {
+      return (
+        <div className='chat_messages'>
+          <h4>Chat with {selected_user.username}</h4>
+          <hr />
+          <ul className='list-group'>
+            {this.state.messages.map((message, index) =>
               {
-                class_name += ' sent_message'
-              }
-              else
-              {
-                class_name += ' received_message'
-              }
+                let class_name = 'list-group-item'
+                if(message.from_id === current_user.id)
+                {
+                  class_name += ' sent_message'
+                }
+                else
+                {
+                  class_name += ' received_message'
+                }
 
-              return (
-                <li key={message.id} className={class_name}>{message.content}</li>
-              )
-            }
-          )}
-        </ul>
-      </div>
-    )
+                return (
+                  <li key={message.id} className={class_name}>{message.content}</li>
+                )
+              }
+            )}
+          </ul>
+        </div>
+      )
+    }
+    else
+    {
+      return (
+        <div className='chat_messages'>
+          <h4>Select a user</h4>
+        </div>
+      )
+    }
   }
 }
 
