@@ -10,7 +10,7 @@ class ChatScreen extends React.Component {
   // do some kind of polling to make it seem real time
 
   componentDidMount() {
-    fetch("http://chat-app-rails-api.herokuapp.com/api/users/" + this.props.currentUser.id + "/messages")
+    fetch("http://chat-app-rails-api.herokuapp.com/api/users/" + this.props.currentUser.id + "/messages?other_user_id=" + this.props.selectedUser.id)
       .then(res => res.json())
       .then(
         (result) =>
