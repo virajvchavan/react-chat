@@ -1,4 +1,5 @@
 import React from 'react'
+import ChatForm from './ChatForm.jsx'
 
 class ChatScreen extends React.Component {
 
@@ -32,6 +33,26 @@ class ChatScreen extends React.Component {
         }
       )
   }
+
+  send_message = (event) => {
+    const url = 'http://chat-app-rails-api.herokuapp.com/api/users/' + this.props.currentUser.id + '/send_message'
+    var request = new Request(url, {
+      method: 'POST',
+      body: 'content=' + document.getElementById('message_content').value + '&receiver_id=' + this.props.selectedUser.id,
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+    });
+
+    fetch(request)
+      .then(res => res.json())
+      .then(
+        (result) =>
+        {
+          console.log('message_sent');
+        }
+      )
+  }
  
   render() {
     const selected_user = this.props.selectedUser
@@ -62,6 +83,7 @@ class ChatScreen extends React.Component {
               }
             )}
           </ul>
+          <ChatForm send_message={this.send_message} />
         </div>
       )
     }
