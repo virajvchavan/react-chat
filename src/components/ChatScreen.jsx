@@ -50,6 +50,8 @@ class ChatScreen extends React.Component {
         (result) =>
         {
           console.log('message_sent');
+          document.getElementById('message_content').value = '';
+          this.loadMessages();
         }
       )
   }
