@@ -1,11 +1,12 @@
 import React from 'react'
 import UsersList from './UsersList.jsx'
 import ChatScreen from './ChatScreen.jsx'
+import LoginForm from './LoginForm.jsx'
 
 class Dashboard extends React.Component {
 
   state = {
-    isLoggedIn: true,
+    isLoggedIn: false,
     currentUser: { id: 2, username: 'jon' },
     selectedUser: { id: null, username: null }
   }
@@ -20,6 +21,37 @@ class Dashboard extends React.Component {
       users[i].classList.remove('active');
     }
     document.getElementById(event.target.getAttribute('id')).classList.add('active');
+  }
+
+  login = (event) => {
+    const url = 'http://chat-app-rails-api.herokuapp.com/api/users/'
+    var request = new Request(url, {
+      method: 'POST',
+      body: 'username=' + document.getElementById('username_input').value,
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+    });
+
+    fetch(request)
+      .then(res => res.json())
+      .then(
+        (result) =>
+        {
+          if(result.id)
+          {
+            console.log('user logged in');
+            this.setState({
+              isLoggedIn: true,
+              currentUser: { id: result.id, username:  document.getElementById('username_input').value }
+            })
+          }
+          else
+          {
+            console.log('error loggin in')
+          }
+        }
+      )
   }
 
   render() {
@@ -41,7 +73,7 @@ class Dashboard extends React.Component {
       );
     }
     return (
-      <h1>Login kar pahila.</h1>
+      <LoginForm login={this.login} />
     );
   }
 }
