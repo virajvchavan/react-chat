@@ -7,7 +7,7 @@ class Dashboard extends React.Component {
 
   state = {
     isLoggedIn: false,
-    currentUser: { id: 2, username: 'jon' },
+    currentUser: null,
     selectedUser: { id: null, username: null }
   }
 
@@ -54,12 +54,16 @@ class Dashboard extends React.Component {
       )
   }
 
+  logout = (event) => {
+    this.setState({isLoggedIn: false, currentUser: null})
+  }
+
   render() {
     if(this.state.isLoggedIn){
       return ( 
         <div className='container'>
           <div className='breadcrumb'>
-            <h6 className='float-right'> Welcome, {this.state.currentUser.username}! <span className='badge badge-info'>Logout</span></h6>
+            <h6 className='float-right'> Welcome, {this.state.currentUser.username}! <a href='#' className='badge badge-info' onClick={this.logout}>Logout</a></h6>
           </div>
           <div className='row'>
             <div className='col-md-3'>
