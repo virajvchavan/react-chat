@@ -12,6 +12,11 @@ class ChatScreen extends React.Component {
 
   componentDidMount() {
     this.loadMessages();
+    this.timer = setInterval(()=> this.loadMessages(), 3000);
+  }
+
+  componentWillUnmount() {
+    this.timer = null; // here...
   }
 
   componentDidUpdate(prevProps) {
