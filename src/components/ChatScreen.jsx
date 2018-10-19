@@ -12,7 +12,7 @@ class ChatScreen extends React.Component {
 
   componentDidMount() {
     this.loadMessages();
-    this.timer = setInterval(()=> this.loadMessages(), 3000);
+    this.timer = setInterval(()=> this.loadMessages(), 5000);
   }
 
   componentWillUnmount() {
@@ -27,7 +27,9 @@ class ChatScreen extends React.Component {
   }
 
   loadMessages() {
-    fetch("http://chat-app-rails-api.herokuapp.com/api/users/" + this.props.currentUser.id + "/messages?other_user_id=" + this.props.selectedUser.id)
+    if(this.props.selectedUser.id)
+    {
+      fetch("http://chat-app-rails-api.herokuapp.com/api/users/" + this.props.currentUser.id + "/messages?other_user_id=" + this.props.selectedUser.id)
       .then(res => res.json())
       .then(
         (result) =>
@@ -37,6 +39,7 @@ class ChatScreen extends React.Component {
           })
         }
       )
+    }
   }
 
   send_message = (event) => {
