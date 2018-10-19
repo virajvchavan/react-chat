@@ -36,7 +36,7 @@ class UsersList extends React.Component {
             {
               return undefined
             }
-            let class_name = 'list-group-item'
+            let class_name = 'list-group-item user'
             if(user.id === selectedUser.id)
             {
               class_name += ' active'

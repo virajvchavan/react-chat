@@ -14,6 +14,12 @@ class Dashboard extends React.Component {
     this.setState({
       selectedUser: {id: event.target.getAttribute('id'), username: event.target.getAttribute('value')}
     });
+    // add active class to proper li in UsersList
+    let users = document.querySelectorAll(".user");
+    for(var i=0; i < users.length; i++){
+      users[i].classList.remove('active');
+    }
+    document.getElementById(event.target.getAttribute('id')).classList.add('active');
   }
 
   render() {
