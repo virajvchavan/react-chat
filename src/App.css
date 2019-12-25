@@ -75,3 +75,7 @@ hr{
 .user{
   cursor: pointer;
 }
+.users_list ul {
+  max-height: 350px;
+  overflow: auto;
+}
